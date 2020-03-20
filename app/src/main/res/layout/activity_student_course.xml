@@ -40,7 +40,7 @@
         android:id="@+id/Viewbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:text="View" />
 
 </LinearLayout>

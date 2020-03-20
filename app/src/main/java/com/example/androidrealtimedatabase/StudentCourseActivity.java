@@ -2,6 +2,7 @@ package com.example.androidrealtimedatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,8 +19,9 @@ public class StudentCourseActivity extends AppCompatActivity {
      TextView StudentName;
        EditText courseName;
         SeekBar seekbarRating;
-        Button AddStudentCourseBTN;
+        Button AddStudentCourseBTN,Viewbtn;
         DatabaseReference databaseCourseReference;
+    String studentID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +30,20 @@ public class StudentCourseActivity extends AppCompatActivity {
         courseName=findViewById(R.id.courseName);
         seekbarRating=findViewById(R.id.seekbarRating);
         AddStudentCourseBTN=findViewById(R.id.AddStudentCourseBTN);
+        Viewbtn=findViewById(R.id.Viewbtn);
+
 
       Student student= (Student) getIntent().getSerializableExtra("Student");
         //Toast.makeText(this, "Student Information is : "+student, Toast.LENGTH_SHORT).show();
-        String studentID=student.getStudentID().toString();
+        studentID=student.getStudentID().toString();
+        Viewbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(StudentCourseActivity.this,CourseDisplayActivity.class);
+                intent.putExtra("studentID",studentID);
+                startActivity(intent);
+            }
+        });
         databaseCourseReference= FirebaseDatabase.getInstance().getReference("courses").child(studentID);
         StudentName.setText(student.getName().toString());
         AddStudentCourseBTN.setOnClickListener(new View.OnClickListener() {

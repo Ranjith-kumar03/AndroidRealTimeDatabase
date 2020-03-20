@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AndroidRealTimeDatabase</string>
+    <array name="gender">
+        <item>Male</item>
+        <item>FeMale</item>
+        <item>SheMale</item>
+        <item>HeFeMale</item>
+    </array>
+</resources>

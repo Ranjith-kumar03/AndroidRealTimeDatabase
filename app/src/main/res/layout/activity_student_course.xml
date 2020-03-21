@@ -34,13 +34,13 @@
         android:id="@+id/AddStudentCourseBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Student" />
+        android:text="Add Course" />
 
     <Button
         android:id="@+id/Viewbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible"
-        android:text="View" />
+        android:text="View Course Taken by The Student" />
 
 </LinearLayout>

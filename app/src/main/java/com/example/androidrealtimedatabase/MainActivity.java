@@ -1,12 +1,15 @@
 package com.example.androidrealtimedatabase;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+
 import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.Toast;
@@ -28,17 +31,20 @@ public class MainActivity extends AppCompatActivity {
         Viewbtn=findViewById(R.id.Viewbtn);
         editText=findViewById(R.id.editText);
         selectValue=findViewById(R.id.selectValue);
+
         databaseStduent= FirebaseDatabase.getInstance().getReference("students");
         AddStudentBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String studentName=editText.getText().toString().trim();
                 String gender=selectValue.getSelectedItem().toString();
+
                 
                 if(!TextUtils.isEmpty(studentName))
                 {
                     String id = databaseStduent.push().getKey();
                     Student student=new Student(id,studentName,gender);
+                    Toast.makeText(MainActivity.this,String.valueOf(selectValue.getSelectedItemPosition()), Toast.LENGTH_SHORT).show();
                     databaseStduent.child(id).setValue(student);
                     Toast.makeText(MainActivity.this, "Student Added Sucessfully", Toast.LENGTH_SHORT).show();
 
@@ -56,5 +62,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
+
 }

@@ -122,6 +122,7 @@ private Context context;
         dialogBuilder.setView(dialogView);
         final EditText newName =dialogView.findViewById(R.id.newName);
         Button updateBTN=dialogView.findViewById(R.id.updateBTN);
+        Button deleteBTN=dialogView.findViewById(R.id.deleteBTN);
         final Spinner updateGender=dialogView.findViewById(R.id.updateGender);
         updateGender.setSelection(x);
         dialogBuilder.setTitle("Updating Student : "+StudentName);
@@ -146,7 +147,17 @@ private Context context;
 
             }
         });
-       
+        deleteBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference dabStudentRefrence=FirebaseDatabase.getInstance().getReference("students").child(studentid);
+                DatabaseReference dabStudentCourseRefrence=FirebaseDatabase.getInstance().getReference("courses").child(studentid);
+                dabStudentRefrence.removeValue();
+                dabStudentCourseRefrence.removeValue();
+                Toast.makeText(context, "Student and Student Course Removed Sucessfully", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
         
     }
 }
